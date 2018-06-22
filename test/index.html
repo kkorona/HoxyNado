@@ -23,7 +23,7 @@
 
 			<div class="icon">
 				<label class="cd-label" for="cd-name">이름 초성</label>
-				<input class="user" type="text" name="cd-name" id="cd-name" required>
+				<input class="user" type="text" name="cd-name" id="cd-name" pattern="[ㄱ-ㅎ][ㄱ-ㅎ][ㄱ-ㅎ]" maxlength="3" required>
 		    </div> 
             
             <div>
@@ -164,17 +164,21 @@
 			<legend>추가정보</legend>
 
 			<div class="icon">
-		    	<label class="cd-label" for="cd-company">지하철</label>
+		    	<label class="cd-label" for="cd-name">지하철</label>
 				<input type="text" name="cd-subway" id="cd-subway">
 		    </div> 
 			<div class="icon">
-		    	<label class="cd-label" for="cd-company">자주가는 장소</label>
+		    	<label class="cd-label" for="cd-name">자주가는 장소</label>
 				<input type="text" name="cd-place" id="cd-place">
 		    </div> 
 			<div class="icon">
-		    	<label class="cd-label" for="cd-company">강의</label>
+		    	<label class="cd-label" for="cd-name">강의</label>
 				<input type="text" name="cd-class" id="cd-class">
 		    </div> 
+			
+			<div>
+		      	<input type="submit" value="Send Message">
+		    </div>
 			
 		</fieldset>
 	</form>
