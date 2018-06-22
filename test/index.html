@@ -15,7 +15,7 @@
 <body>
 	<form class="cd-form floating-labels">
 		<fieldset>
-			<legend>Account Info</legend>
+			<legend>필수정보</legend>
 
 			<div class="error-message">
 				<p>앙기모찌 여친구함</p>
@@ -23,7 +23,7 @@
 
 			<div class="icon">
 				<label class="cd-label" for="cd-name">이름 초성</label>
-				<input class="user" type="text" name="cd-name" id="cd-name" maxlength="3" required>
+				<input class="user" type="text" name="cd-name" id="cd-name" required>
 		    </div> 
             
             <div>
@@ -31,19 +31,19 @@
 
 				<ul class="cd-form-list">
 					<li>
-						<input type="radio" name="radio-button" id="cd-radio-1" checked value="M">
+						<input type="radio" name="radio-button" id="cd-radio-1" checked>
 						<label for="cd-radio-1">남자</label>
 					</li>
 						
 					<li>
-						<input type="radio" name="radio-button" id="cd-radio-2" value="F">
+						<input type="radio" name="radio-button" id="cd-radio-2">
 						<label for="cd-radio-2">여자</label>
 					</li>
 				</ul>
 			</div>
 
 		    <div class="icon">
-		    	<label class="cd-label" for="cd-company">학번 (두자리로 입력하세요!)</label>
+		    	<label class="cd-label" for="cd-company">학번</label>
 				<input class="company" type="text" name="cd-year" id="cd-year" pattern="[0-9][0-9]" maxlength="2" required>
 		    </div> 
             
@@ -51,7 +51,7 @@
 				<h4>학과</h4>
 
 				<p class="cd-select icon">
-					<select id="major" class="budget">
+					<select class="budget">
 						<option value="0" selected>학과를 선택해주세요.</option>
 						<option value="481100">간호학과</option>
                         <option value="346731">건축공학과</option>
@@ -161,39 +161,21 @@
 		</fieldset>
 
 		<fieldset>
-			<legend>Project Info</legend>
-
-			<div>
-				<h4>Features</h4>
-
-				<ul class="cd-form-list">
-					<li>
-						<input type="checkbox" id="cd-checkbox-1">
-						<label for="cd-checkbox-1">Option 1</label>
-					</li>
-
-					<li>
-						<input type="checkbox" id="cd-checkbox-2">
-						<label for="cd-checkbox-2">Option 2</label>
-					</li>
-
-					<li>
-						<input type="checkbox" id="cd-checkbox-3">
-						<label for="cd-checkbox-3">Option 3</label>
-					</li>
-				</ul>
-			</div>
+			<legend>추가정보</legend>
 
 			<div class="icon">
-				<label class="cd-label" for="cd-textarea">Project description</label>
-      			<textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
-			</div>
+		    	<label class="cd-label" for="cd-company">지하철</label>
+				<input type="text" name="cd-subway" id="cd-subway">
+		    </div> 
+			<div class="icon">
+		    	<label class="cd-label" for="cd-company">자주가는 장소</label>
+				<input type="text" name="cd-place" id="cd-place">
+		    </div> 
+			<div class="icon">
+		    	<label class="cd-label" for="cd-company">강의</label>
+				<input type="text" name="cd-class" id="cd-class">
+		    </div> 
 			
-			<div class="cd-error" id="cd-error">			</div>
-			
-			<div>
-		      	<input id="submit_final" type="submit" value="Send Message">
-		    </div>
 		</fieldset>
 	</form>
 <script src="jquery-2.1.1.js"></script>
