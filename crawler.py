@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import codecs
 import requests
+import Distributor
 
 
 def main():
@@ -10,7 +11,7 @@ def main():
     ff.close()
     ff = codecs.open("getArticle.txt", 'a', 'utf-8')
     result = ""
-    for i in range(1, 100, 1):
+    for i in range(1, 20, 1):
         url = "http://mypnu.net/index.php?mid=sun&page="+str(i)
         print(url)
         req = requests.get(url, cookies=cookies)
@@ -39,15 +40,13 @@ def main():
             articleDate = articleDate.get_text()
             articleTxt = ll.get_text()
             articleView = view
-            print(articleTitle)
-            print(articleDate)
-            print(aid)
 
             result = ("- " + aid + " -\n" + articleTitle + "\n" +
                       articleDate + "\n" + articleView + "\n" +
                       articleTxt + "\n--------------" +
                       "----------------\n")
             ff.write(result)
+            Distributor.add(aid, articleTitle, articleDate, articleTxt)
     ff.close()
 
 if __name__ == "__main__":
