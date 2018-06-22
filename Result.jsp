@@ -14,20 +14,21 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="WebContent/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="WebContent/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="WebContent/vendor/animate/animate.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="WebContent/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="WebContent/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-		<link rel="stylesheet" href="css/util.css">
-		<link rel="stylesheet" href="css/main.css">
-	<!--===============================================================================================-->
+	<style>
+        table {
+            border-collapse: collapse;
+            width: 90%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even){background-color: #f2f2f2}
+        thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
 	<title>My Twinkles</title>
 
 </head>
@@ -35,7 +36,7 @@
 	<%
 		java.lang.String name = request.getParameter("cd-name");
 		java.lang.String sex = request.getParameter("radio-button");
-		java.lang.String major = request.getParameter("major option:selected");
+		java.lang.String major = request.getParameter("major");
 		java.lang.String year = request.getParameter("cd-year");
 		java.lang.String subway = request.getParameter("cd-subway");
 		java.lang.String place = request.getParameter("cd-place");

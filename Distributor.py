@@ -3,12 +3,12 @@ import codecs
 import pymysql
 
 
-def add(aid, articleTitle, articleDate, articleTxt): # 크롤링한 데이터 입력
+def add(aid, articleTitle, articleDate, articleTxt): # 크롤링한 데이터를 인수로 받는다
     conn = pymysql.connect(host='localhost', user='root',
-    password='high1uck', db='user_info', charset='utf8') # DB에 저장하기 위하여 서버에 접속할 때 사용 할 일종의 매크로
+    password='high1uck', db='user_info', charset='utf8') # DB와의 연결을 확인하기 위한 매크로
 
     sql = """insert into maintbl(aid,articleTitle,articleDate,sex,name,year,major,subway,place,class) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-    # maintbl에 각각의 컬럼에 문자열로 입력한다.
+    # MySQL insert 명령어를 작성
     tList = ["sex", "major", "year", "name", "subway", "place", "class"] # 분류조건 리스트
     l = (aid, articleTitle, articleDate) # 분류된 내용들이 저장될 튜플을 생성한다. 현 3개 이외에 내용들은 반복문을 통해 추가될 예정이다.
 
@@ -21,12 +21,12 @@ def add(aid, articleTitle, articleDate, articleTxt): # 크롤링한 데이터 �
             cnt = 0 # 조건에 부합하는 횟수를 위한 변수
             mainFrag = frags[0] # 메인은 해당 줄의 맨 처음에 나오는 상세조건
             for i in frags:
-                if i is '\n': continue # 다음 줄이 있으면 계속 반복함
+                if i is '\n': continue # 각 행의 끝에 dummy로 판정되는 \n은 무시
                 if articleTitle.find(i) is not -1: # 제목에서 상세 조건 찾아서 조건과 부합 되면 cnt 1로 변경
                     cnt = 1
                 elif articleTxt.find(i) is not -1: # 내용에서 상세 조건 찾아서 조건과 부합 되면 cnt 1로 변경
                     cnt = 1
-            if cnt is not 0: # 조건이 부합 할 시 해당 조건의 메인이 element가 되며 반복문을 빠져나온다.
+            if cnt is not 0: # 조건이 부합 할 시 해당 조건의 첫번째 원소가 element가 되며 반복문을 빠져나온다.
                 element = mainFrag
                 break
         if element is None and target is "sex": # 성별이 NONE 일 시 NULL 값이 아닌 X를 요소에 저장한다.
@@ -34,15 +34,15 @@ def add(aid, articleTitle, articleDate, articleTxt): # 크롤링한 데이터 �
         l += (element,) # 분류된 요소들을 DB에 넣기 위한 임시 튜플에 저장한다 
 
     try:
-        with conn.cursor() as cursor: # 앞에서 만든 conn을 사용하여 미리 지정한 서버와 연결한다
+        with conn.cursor() as cursor: # DB Cursor 선언
             cursor.execute(sql, l)
-            # maintbl에 각각의 컬럼에 문자열로 입력한다. 해당 컬럼에 채워질 데이터는 튜플 l에 임시로 저장한 요소들을 가져온다
+            # SQL insert 구문 실행. 해당 컬럼에 채워질 데이터는 튜플 l에 임시로 저장한 요소들을 가져온다
             conn.commit()
             # 변경사항을 최종적으로 DB에 적용한다.
             
 
     finally: 
-        conn.close() # 서버와의 접속을 종료한다.
+        conn.close() # DB와의 접속을 종료한다.
 
 if __name__ == "__main__":
     add("2211659", "오늘 열시반 미학 발표하신 분", "0001.01.01 00:00", "인"
