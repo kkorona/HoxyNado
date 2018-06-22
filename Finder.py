@@ -42,15 +42,15 @@ def dict_to_json(dict, func) :
     return out_str
 
 def main():
-    file = pathlib.Path('Samples.json')
-    file_text = file.read_text(encoding='utf-8')
-    json_data = json.loads(file_text)
+    file = pathlib.Path('Samples.json') # 사용자가 보낸 데이터 파일을 가져온다.
+    file_text = file.read_text(encoding='utf-8') # 받은 데이터 파일에서 utf-8로 인코딩하여 텍스트를 가져온다
+    json_data = json.loads(file_text) # 가져온 텍스트 파일을 다시 json 데이터 파일로 만든다.
 
-    categoryList = ["sex", "name", "year", "major", "subway", "place", "class"]
+    categoryList = ["sex", "name", "year", "major", "subway", "place", "class"] # DB에 저장되어진 카테고리들 이다.  
 
     try:
         conn = pymysql.connect(host='localhost', user='root',
-        password='high1uck', db='user_info', charset='utf8')
+        password='high1uck', db='user_info', charset='utf8') ## 서버에 접속
         added = {}
         curs = conn.cursor(pymysql.cursors.DictCursor)
         ret = []
