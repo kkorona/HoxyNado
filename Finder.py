@@ -68,12 +68,20 @@ def main():
         for category_i in categoryList:
             sql = "select * from maintbl where " + category_i + "=%s"
             user_value = json_data[category_i]
-            curs.execute(sql, [user_value])
+            curs.execute(sql, (user_value))
+            # print(json_data)
             # user가 입력한 해당 category 특성을 가지고 있는 모든 값을 불러옴
-
             rows = curs.fetchall()
+            # print(rows)
             for row in rows:
-                if not row['aid'] in added: #중복검사
+                match = True
+                for category_j in categoryList:
+                    if(json_data[category_j] is ''):
+                        continue
+                    if (row[category_j] is not None) and (row[category_j] != json_data[category_j]):
+                        match = False
+
+                if match and (not row['aid'] in added): #중복검사
                     ret.append(row)
                     added[row['aid']] = 1
     
